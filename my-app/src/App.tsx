@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MyClass from './components/MyClass';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
+        <MyClass id={22} ></MyClass>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
