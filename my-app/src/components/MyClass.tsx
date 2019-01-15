@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Question } from '../interfaces/question';
+import AnswerForm from './AnswerForm';
 
 export interface MyClassProps { id: number; };
-export interface MyClassState { error: any; isLoaded: boolean; questions: Question[]; };
+export interface MyClassState { error: any; isLoaded: boolean; questions: Question[]; isCorrect: boolean; };
 
 class MyClass extends Component<MyClassProps, MyClassState> {
     constructor(props: MyClassProps) {
@@ -10,7 +11,8 @@ class MyClass extends Component<MyClassProps, MyClassState> {
         this.state = {
             error: '',
             isLoaded: false,
-            questions: []
+            questions: [],
+            isCorrect: false
         };
     }
 
@@ -47,14 +49,22 @@ class MyClass extends Component<MyClassProps, MyClassState> {
         } else {
             return (
                 <div>
+                    <div>
+                        {this.state.isCorrect
+                            ? <h2>Richtig</h2>
+                            : <h2></h2>
+                        }
+                    </div>
                     <h3>Question:</h3>
                     {questions.map(item => (
-                        <div>
+                        <div key={item.id}>
                             <h4>{item.question} </h4>
                             <h3>Category title:</h3>
                             <h4>{item.category.title}</h4>
+                            <h4>{item.answer}</h4>
                         </div>
                     ))}
+                <AnswerForm></AnswerForm>
                 </div>
 
             );
